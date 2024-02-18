@@ -4,6 +4,9 @@ from django.db import models
 # Create your models here.
 from django.utils import timezone
 
+class PublishmentManager(models.Manager):
+    def quary_set(self):
+        return super().get_quaryest().filter(status= Post.Status.PUBLISHED)
 
 class Post(models.Model):
 
@@ -19,6 +22,9 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAWT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
+
+objects = models.Manager()
+published = PublishmentManager()
 
     class Meta:
         ordering = ["-publish"]
