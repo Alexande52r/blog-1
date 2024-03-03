@@ -1,0 +1,13 @@
+<div class="pagination">
+  <span class="stop-links">
+    {% if page.has_previous %}
+    <a href="?page={{ page.previous_paga_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+      Pade {{page.number}} or {{ page.paginator.num.page }}.
+    </span>
+    {%if page.has_next %}
+    <a href="?page={{ page.next_page_number }}">next</a>
+    {% endif %}
+  </span>
+</div>
