@@ -12,7 +12,7 @@ class PublishmentManager(models.Manager):
 class Post(models.Model):
 
     class Status(models.TextChoices):
-        DRAWT = "DF", "Draft"
+        DRAFT = "DF", "Draft"
         PUBLISHED = "PB", "Published"
 
     title = models.CharField(max_length=250)
@@ -22,7 +22,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAWT)
+    status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
