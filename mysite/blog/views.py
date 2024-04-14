@@ -68,8 +68,8 @@ def add_post(request):
         form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.users
-            post.status = form.cleaned_data.get['status']
+            post.author = request.user
+            post.status = form.cleaned_data['status']
             post.image = form.cleaned_data.get('image')
             post.save()
             post.tags.add(*form.cleaned_data['tags'])
